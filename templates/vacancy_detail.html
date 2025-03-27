@@ -1,0 +1,50 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Гостевой дом Южный берег
+{% endblock %}
+
+{% block content %}
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="dlab-bnr-inr overlay-black-middle bg-pt" style="background-image:url({% static 'images/banner/bnr1.jpg' %});">
+            <div class="container">
+                <div class="dlab-bnr-inr-entry">
+                    <h1 class="text-white">{{ vacancy.title }}</h1>
+					<!-- Breadcrumb row -->
+					<div class="breadcrumb-row">
+						<ul class="list-inline">
+							<li><a href="/">Домой</a></li>
+							<li>{{ vacancy.title }}</li>
+						</ul>
+					</div>
+					<!-- Breadcrumb row END -->
+                </div>
+            </div>
+        </div>
+        <!-- inner page banner END -->
+        <!-- contact area -->
+        <div class="content-area">
+            <div class="container max-w900">
+                <!-- blog start -->
+                <div class="blog-post blog-single">
+                    <div class="dlab-post-meta m-b20">
+                        <ul>
+                            <li class="post-date">{{ vacancy.created_at }}</li>
+                        </ul>
+                    </div>
+					<div class="dlab-post-title">
+                        <h4 class="post-title m-t0"><a href="">{{ vacancy.title }}</a></h4>
+                    </div>
+
+                    <div class="dlab-post-text">
+						{{ vacancy.description|safe }}
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+ {% endblock %}
