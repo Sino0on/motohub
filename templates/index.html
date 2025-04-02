@@ -154,36 +154,44 @@ MotoHub
         <div class="uk-container uk-container-large">
           <div class="uk-position-relative" tabindex="-1" data-uk-slider>
             <ul class="uk-slider-items uk-grid uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l uk-child-width-1-5@xl">
+              {% for i in categories %}
               <li>
-                <div class="category-item"><a class="category-item__link" href="#">
-                    <div class="category-item__title"> <strong>Родстер</strong><span>Посмотреть</span></div>
-                    <div class="category-item__icon"><img src="{% static 'assets/img/icons/category-1.svg' %}" alt="icon-category" data-uk-svg></div>
+                <div class="category-item"><a class="category-item__link" href="{% url 'shop' %}?category={{ i.pk }}">
+                    <div class="category-item__title"> <strong>{{ i.title }}</strong><span>Посмотреть</span></div>
+                    <div class="category-item__icon"><img src="{{ i.svg.url }}" alt="icon-category" data-uk-svg></div>
                   </a></div>
               </li>
-              <li>
-                <div class="category-item"><a class="category-item__link" href="page-shop-grid.html">
-                    <div class="category-item__title"> <strong>Спортбайк</strong><span>Посмотреть</span></div>
-                    <div class="category-item__icon"><img src="{% static 'assets/img/icons/category-2.svg' %}" alt="icon-category" data-uk-svg></div>
-                  </a></div>
-              </li>
-              <li>
-                <div class="category-item"><a class="category-item__link" href="page-shop-grid.html">
-                    <div class="category-item__title"> <strong>Чоппер</strong><span>Посмотреть</span></div>
-                    <div class="category-item__icon"><img src="{% static 'assets/img/icons/category-3.svg' %}" alt="icon-category" data-uk-svg></div>
-                  </a></div>
-              </li>
-              <li>
-                <div class="category-item"><a class="category-item__link" href="page-shop-grid.html">
-                    <div class="category-item__title"> <strong>Крейсер</strong><span>Посмотреть</span></div>
-                    <div class="category-item__icon"><img src="{% static 'assets/img/icons/category-4.svg' %}" alt="icon-category" data-uk-svg></div>
-                  </a></div>
-              </li>
-              <li>
-                <div class="category-item"><a class="category-item__link" href="page-shop-grid.html">
-                    <div class="category-item__title"> <strong>Туристические Мотоциклы</strong><span>Посмотреть</span></div>
-                    <div class="category-item__icon"><img src="{% static 'assets/img/icons/category-5.svg' %}" alt="icon-category" data-uk-svg></div>
-                  </a></div>
-              </li>
+              {% endfor %}
+<!--              <li>-->
+<!--                <div class="category-item"><a class="category-item__link" href="#">-->
+<!--                    <div class="category-item__title"> <strong>Родстер</strong><span>Посмотреть</span></div>-->
+<!--                    <div class="category-item__icon"><img src="{% static 'assets/img/icons/category-1.svg' %}" alt="icon-category" data-uk-svg></div>-->
+<!--                  </a></div>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <div class="category-item"><a class="category-item__link" href="page-shop-grid.html">-->
+<!--                    <div class="category-item__title"> <strong>Спортбайк</strong><span>Посмотреть</span></div>-->
+<!--                    <div class="category-item__icon"><img src="{% static 'assets/img/icons/category-2.svg' %}" alt="icon-category" data-uk-svg></div>-->
+<!--                  </a></div>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <div class="category-item"><a class="category-item__link" href="page-shop-grid.html">-->
+<!--                    <div class="category-item__title"> <strong>Чоппер</strong><span>Посмотреть</span></div>-->
+<!--                    <div class="category-item__icon"><img src="{% static 'assets/img/icons/category-3.svg' %}" alt="icon-category" data-uk-svg></div>-->
+<!--                  </a></div>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <div class="category-item"><a class="category-item__link" href="page-shop-grid.html">-->
+<!--                    <div class="category-item__title"> <strong>Крейсер</strong><span>Посмотреть</span></div>-->
+<!--                    <div class="category-item__icon"><img src="{% static 'assets/img/icons/category-4.svg' %}" alt="icon-category" data-uk-svg></div>-->
+<!--                  </a></div>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <div class="category-item"><a class="category-item__link" href="page-shop-grid.html">-->
+<!--                    <div class="category-item__title"> <strong>Туристические Мотоциклы</strong><span>Посмотреть</span></div>-->
+<!--                    <div class="category-item__icon"><img src="{% static 'assets/img/icons/category-5.svg' %}" alt="icon-category" data-uk-svg></div>-->
+<!--                  </a></div>-->
+<!--              </li>-->
             </ul>
             <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin-top"></ul>
           </div>
@@ -199,396 +207,466 @@ MotoHub
               <p>Dolore magna aliqua quis nostrud exercitation ullamco laboris nisi ut aliquip exa comds<br> consequat duis aute irure dolor repreh enderit in voluptate velit esse cilum.</p>
             </div>
             <div class="uk-grid uk-grid-medium uk-child-width-1-3@l uk-child-width-1-2@s" data-uk-grid>
+                {% for i in products %}
               <div>
-                <div class="product-item uk-transition-toggle">
-                  <div class="product-item__head">
-                    <div>
-                      <div class="product-item__name"> <a href="page-shop-product-1.html">BMW S1000 RX</a></div>
-                      <div class="product-item__manufacturer">BMW</div>
+                  <div class="product-item uk-transition-toggle">
+                    <div class="product-item__head">
+                      <div>
+                        <div class="product-item__name"> <a href="page-shop-product-1.html">{{ i.title }}</a></div>
+                        <div class="product-item__manufacturer">{{ i.make }}</div>
+                        <div class="product-item__category">Категория: <a href="#!">{{ i.category }}</a></div>
+                      </div>
+                      <div>
+                        <div class="product-item__price">{{ i.price }}</div>
+                      </div>
                     </div>
-                    <div>
-                      <div class="product-item__price">$4,500</div>
+                    <div class="product-item__media uk-inline-clip uk-inline"><img src="assets/img/product-1.jpg" alt="BMW S1000 RX" /><a class="uk-transition-fade" href="page-shop-product-1.html">
+                        <div class="uk-overlay-cover uk-overlay-primary"></div>
+                        <div class="uk-position-center"><span class="icon-cross"></span></div>
+                      </a>
+                      <div class="product-item__label">Параметры</div><button class="product-item__whish btn-whish"><i class="far fa-heart"></i></button>
                     </div>
-                  </div>
-                  <div class="product-item__media uk-inline-clip uk-inline"><img src="{% static 'assets/img/product-1.jpg' %}" alt="BMW S1000 RX" /><a class="uk-transition-fade" href="page-shop-product-1.html">
-                      <div class="uk-overlay-cover uk-overlay-primary"></div>
-                      <div class="uk-position-center"><span class="icon-cross"></span></div>
-                    </a><button class="product-item__whish btn-whish"><i class="far fa-heart"></i></button></div>
-                  <div class="product-item__info">
-                    <ul class="list-info">
-                      <li class="list-info-item">
-                        <div class="list-info-item__title">Год</div>
-                        <div class="list-info-item__value">2021</div>
-                      </li>
-                      <li class="list-info-item">
-                        <div class="list-info-item__title">Тип</div>
-                        <div class="list-info-item__value">Sports</div>
-                      </li>
-                      <li class="list-info-item">
-                        <div class="list-info-item__title">Производитель</div>
-                        <div class="list-info-item__value">BMW</div>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="product-item__specifications">
-                    <ul class="specifications-list">
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-1.png' %}" alt="Engine type" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Тип двигателя</div>
-                          <div class="specifications-list-item__value">4-тактный цилиндр</div>
-                        </div>
-                      </li>
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-2.png' %}" alt="Engine Power" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Мощность двигателя</div>
-                          <div class="specifications-list-item__value">205hp (151 kW)</div>
-                        </div>
-                      </li>
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-3.png' %}" alt="Displacement" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Смещение</div>
-                          <div class="specifications-list-item__value">999 cc</div>
-                        </div>
-                      </li>
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-4.png' %}" alt="Bore/Stroke" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Диаметр/ход поршня</div>
-                          <div class="specifications-list-item__value">80mm / 49.7mm</div>
-                        </div>
-                      </li>
-                    </ul>
+                    <div class="product-item__info">
+                      <ul class="list-info">
+                        <li class="list-info-item">
+                          <div class="list-info-item__title">Год</div>
+                          <div class="list-info-item__value">{{ i.year }}</div>
+                        </li>
+                        <li class="list-info-item">
+                          <div class="list-info-item__title">Тип</div>
+                          <div class="list-info-item__value">{{ i.type }}</div>
+                        </li>
+                        <li class="list-info-item">
+                          <div class="list-info-item__title">Производитель</div>
+                          <div class="list-info-item__value">{{ i.make }}</div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="product-item__specifications">
+                      <ul class="specifications-list">
+                        <li class="specifications-list-item">
+                          <div class="specifications-list-item__icon"><img src="assets/img/icons/specifications-1.png" alt="Engine type" /></div>
+                          <div class="specifications-list-item__desc">
+                            <div class="specifications-list-item__title">Тип двигателя</div>
+                            <div class="specifications-list-item__value">{{ i.engine_type }}</div>
+                          </div>
+                        </li>
+                        <li class="specifications-list-item">
+                          <div class="specifications-list-item__icon"><img src="assets/img/icons/specifications-2.png" alt="Engine Power" /></div>
+                          <div class="specifications-list-item__desc">
+                            <div class="specifications-list-item__title">Мощность двигателя</div>
+                            <div class="specifications-list-item__value">{{ i.engine_power }}</div>
+                          </div>
+                        </li>
+                        <li class="specifications-list-item">
+                          <div class="specifications-list-item__icon"><img src="assets/img/icons/specifications-3.png" alt="Displacement" /></div>
+                          <div class="specifications-list-item__desc">
+                            <div class="specifications-list-item__title">Объем двигателя</div>
+                            <div class="specifications-list-item__value">{{ i.displacement }}</div>
+                          </div>
+                        </li>
+                        <li class="specifications-list-item">
+                          <div class="specifications-list-item__icon"><img src="assets/img/icons/specifications-4.png" alt="Bore/Stroke" /></div>
+                          <div class="specifications-list-item__desc">
+                            <div class="specifications-list-item__title">Диаметр и ход поршня</div>
+                            <div class="specifications-list-item__value">{{ i.bore_stroke }}</div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div>
-                <div class="product-item uk-transition-toggle">
-                  <div class="product-item__head">
-                    <div>
-                      <div class="product-item__name"> <a href="page-shop-product-1.html">YAMAHA MT09</a></div>
-                      <div class="product-item__manufacturer">Yamaha</div>
-                    </div>
-                    <div>
-                      <div class="product-item__price">$4,500</div>
-                    </div>
-                  </div>
-                  <div class="product-item__media uk-inline-clip uk-inline"><img src="{% static 'assets/img/product-2.jpg' %}" alt="YAMAHA MT09 BASE" /><a class="uk-transition-fade" href="page-shop-product-1.html">
-                      <div class="uk-overlay-cover uk-overlay-primary"></div>
-                      <div class="uk-position-center"><span class="icon-cross"></span></div>
-                    </a><button class="product-item__whish btn-whish"><i class="far fa-heart"></i></button></div>
-                  <div class="product-item__info">
-                    <ul class="list-info">
-                      <li class="list-info-item">
-                        <div class="list-info-item__title">Год</div>
-                        <div class="list-info-item__value">2021</div>
-                      </li>
-                      <li class="list-info-item">
-                        <div class="list-info-item__title">Тип</div>
-                        <div class="list-info-item__value">Спортивный</div>
-                      </li>
-                      <li class="list-info-item">
-                        <div class="list-info-item__title">Производитель</div>
-                        <div class="list-info-item__value">Yamaha</div>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="product-item__specifications">
-                    <ul class="specifications-list">
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-1.png' %}" alt="Engine type" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Тип двигателя</div>
-                          <div class="specifications-list-item__value">Десмоседичи 90 Вч</div>
-                        </div>
-                      </li>
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-2.png' %}" alt="Engine Power" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Мощность двигателя</div>
-                          <div class="specifications-list-item__value">208hp (153 kW)</div>
-                        </div>
-                      </li>
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-3.png' %}" alt="Displacement" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Смещение</div>
-                          <div class="specifications-list-item__value">1,103 cc</div>
-                        </div>
-                      </li>
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-4.png' %}" alt="Bore/Stroke" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Диаметр/ход поршня</div>
-                          <div class="specifications-list-item__value">80mm / 49.7mm</div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div class="product-item uk-transition-toggle">
-                  <div class="product-item__head">
-                    <div>
-                      <div class="product-item__name"> <a href="page-shop-product-1.html">KTM RC 390 BASE</a></div>
-                      <div class="product-item__manufacturer">KTM</div>
-                    </div>
-                    <div>
-                      <div class="product-item__price">$6,200</div>
-                    </div>
-                  </div>
-                  <div class="product-item__media uk-inline-clip uk-inline"><img src="{% static 'assets/img/product-3.jpg' %}" alt="KTM RC 390 BASE" /><a class="uk-transition-fade" href="page-shop-product-1.html">
-                      <div class="uk-overlay-cover uk-overlay-primary"></div>
-                      <div class="uk-position-center"><span class="icon-cross"></span></div>
-                    </a><button class="product-item__whish btn-whish"><i class="far fa-heart"></i></button></div>
-                  <div class="product-item__info">
-                    <ul class="list-info">
-                      <li class="list-info-item">
-                        <div class="list-info-item__title">Год</div>
-                        <div class="list-info-item__value">2021</div>
-                      </li>
-                      <li class="list-info-item">
-                        <div class="list-info-item__title">Тип</div>
-                        <div class="list-info-item__value">Adventure</div>
-                      </li>
-                      <li class="list-info-item">
-                        <div class="list-info-item__title">Производитель</div>
-                        <div class="list-info-item__value">KTM</div>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="product-item__specifications">
-                    <ul class="specifications-list">
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-1.png' %}" alt="Engine type" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Тип двигателя</div>
-                          <div class="specifications-list-item__value">4-тактный цилиндр</div>
-                        </div>
-                      </li>
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-2.png' %}" alt="Engine Power" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Мощность двигателя</div>
-                          <div class="specifications-list-item__value">190hp (137 kW)</div>
-                        </div>
-                      </li>
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-3.png' %}" alt="Displacement" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Смещение</div>
-                          <div class="specifications-list-item__value">537 cc</div>
-                        </div>
-                      </li>
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-4.png' %}" alt="Bore/Stroke" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Диаметр/ход поршня</div>
-                          <div class="specifications-list-item__value">80mm / 49.7mm</div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div class="product-item uk-transition-toggle">
-                  <div class="product-item__head">
-                    <div>
-                      <div class="product-item__name"> <a href="page-shop-product-1.html">DUCATI HYPER 950</a></div>
-                      <div class="product-item__manufacturer">Ducati</div>
-                    </div>
-                    <div>
-                      <div class="product-item__price">$4,500</div>
-                    </div>
-                  </div>
-                  <div class="product-item__media uk-inline-clip uk-inline"><img src="{% static 'assets/img/product-4.jpg' %}" alt="DUCATI HYPER 950" /><a class="uk-transition-fade" href="page-shop-product-1.html">
-                      <div class="uk-overlay-cover uk-overlay-primary"></div>
-                      <div class="uk-position-center"><span class="icon-cross"></span></div>
-                    </a><button class="product-item__whish btn-whish"><i class="far fa-heart"></i></button></div>
-                  <div class="product-item__info">
-                    <ul class="list-info">
-                      <li class="list-info-item">
-                        <div class="list-info-item__title">Год</div>
-                        <div class="list-info-item__value">2021</div>
-                      </li>
-                      <li class="list-info-item">
-                        <div class="list-info-item__title">Тип</div>
-                        <div class="list-info-item__value">Спортивный</div>
-                      </li>
-                      <li class="list-info-item">
-                        <div class="list-info-item__title">Производитель</div>
-                        <div class="list-info-item__value">Ducati</div>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="product-item__specifications">
-                    <ul class="specifications-list">
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-1.png' %}" alt="Engine type" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Тип двигателя</div>
-                          <div class="specifications-list-item__value">4-тактный цилиндр</div>
-                        </div>
-                      </li>
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-2.png' %}" alt="Engine Power" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Мощность двигателя</div>
-                          <div class="specifications-list-item__value">190hp (137 kW)</div>
-                        </div>
-                      </li>
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-3.png' %}" alt="Displacement" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Смещение</div>
-                          <div class="specifications-list-item__value">537 cc</div>
-                        </div>
-                      </li>
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-4.png' %}" alt="Bore/Stroke" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Диаметр/ход поршня</div>
-                          <div class="specifications-list-item__value">80mm / 49.7mm</div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div class="product-item uk-transition-toggle">
-                  <div class="product-item__head">
-                    <div>
-                      <div class="product-item__name"> <a href="page-shop-product-1.html">KAWASAKI VULCAN</a></div>
-                      <div class="product-item__manufacturer">Kawasaki</div>
-                    </div>
-                    <div>
-                      <div class="product-item__price">$6,200</div>
-                    </div>
-                  </div>
-                  <div class="product-item__media uk-inline-clip uk-inline"><img src="{% static 'assets/img/product-5.jpg' %}" alt="KAWASAKI VULCAN" /><a class="uk-transition-fade" href="page-shop-product-1.html">
-                      <div class="uk-overlay-cover uk-overlay-primary"></div>
-                      <div class="uk-position-center"><span class="icon-cross"></span></div>
-                    </a><button class="product-item__whish btn-whish"><i class="far fa-heart"></i></button></div>
-                  <div class="product-item__info">
-                    <ul class="list-info">
-                      <li class="list-info-item">
-                        <div class="list-info-item__title">Год</div>
-                        <div class="list-info-item__value">2021</div>
-                      </li>
-                      <li class="list-info-item">
-                        <div class="list-info-item__title">Тип</div>
-                        <div class="list-info-item__value">Спортивный</div>
-                      </li>
-                      <li class="list-info-item">
-                        <div class="list-info-item__title">Производитель</div>
-                        <div class="list-info-item__value">Kawasaki</div>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="product-item__specifications">
-                    <ul class="specifications-list">
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-1.png' %}" alt="Engine type" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Тип двигателя</div>
-                          <div class="specifications-list-item__value">4-тактный цилиндр</div>
-                        </div>
-                      </li>
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-2.png' %}" alt="Engine Power" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Мощность двигателя</div>
-                          <div class="specifications-list-item__value">190hp (137 kW)</div>
-                        </div>
-                      </li>
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-3.png' %}" alt="Displacement" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Смещение</div>
-                          <div class="specifications-list-item__value">537 cc</div>
-                        </div>
-                      </li>
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-4.png' %}" alt="Bore/Stroke" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Диаметр/ход поршня</div>
-                          <div class="specifications-list-item__value">80mm / 49.7mm</div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div class="product-item uk-transition-toggle">
-                  <div class="product-item__head">
-                    <div>
-                      <div class="product-item__name"> <a href="page-shop-product-1.html">HONDA CB500X ABS</a></div>
-                      <div class="product-item__manufacturer">Powered by Honda</div>
-                    </div>
-                    <div>
-                      <div class="product-item__price">$4,500</div>
-                    </div>
-                  </div>
-                  <div class="product-item__media uk-inline-clip uk-inline"><img src="{% static 'assets/img/product-6.jpg' %}" alt="HONDA CB500X ABS" /><a class="uk-transition-fade" href="page-shop-product-1.html">
-                      <div class="uk-overlay-cover uk-overlay-primary"></div>
-                      <div class="uk-position-center"><span class="icon-cross"></span></div>
-                    </a><button class="product-item__whish btn-whish"><i class="far fa-heart"></i></button></div>
-                  <div class="product-item__info">
-                    <ul class="list-info">
-                      <li class="list-info-item">
-                        <div class="list-info-item__title">Год</div>
-                        <div class="list-info-item__value">2021</div>
-                      </li>
-                      <li class="list-info-item">
-                        <div class="list-info-item__title">Тип</div>
-                        <div class="list-info-item__value">Adventure</div>
-                      </li>
-                      <li class="list-info-item">
-                        <div class="list-info-item__title">Производитель</div>
-                        <div class="list-info-item__value">Honda</div>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="product-item__specifications">
-                    <ul class="specifications-list">
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-1.png' %}" alt="Engine type" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Тип двигателя</div>
-                          <div class="specifications-list-item__value">4-тактный цилиндр</div>
-                        </div>
-                      </li>
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-2.png' %}" alt="Engine Power" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Мощность двигателя</div>
-                          <div class="specifications-list-item__value">190hp (137 kW)</div>
-                        </div>
-                      </li>
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-3.png' %}" alt="Displacement" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Смещение</div>
-                          <div class="specifications-list-item__value">537 cc</div>
-                        </div>
-                      </li>
-                      <li class="specifications-list-item">
-                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-4.png' %}" alt="Bore/Stroke" /></div>
-                        <div class="specifications-list-item__desc">
-                          <div class="specifications-list-item__title">Диаметр/ход поршня</div>
-                          <div class="specifications-list-item__value">80mm / 49.7mm</div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+                {% endfor %}
+<!--              <div>-->
+<!--                <div class="product-item uk-transition-toggle">-->
+<!--                  <div class="product-item__head">-->
+<!--                    <div>-->
+<!--                      <div class="product-item__name"> <a href="page-shop-product-1.html">BMW S1000 RX</a></div>-->
+<!--                      <div class="product-item__manufacturer">BMW</div>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                      <div class="product-item__price">$4,500</div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="product-item__media uk-inline-clip uk-inline"><img src="{% static 'assets/img/product-1.jpg' %}" alt="BMW S1000 RX" /><a class="uk-transition-fade" href="page-shop-product-1.html">-->
+<!--                      <div class="uk-overlay-cover uk-overlay-primary"></div>-->
+<!--                      <div class="uk-position-center"><span class="icon-cross"></span></div>-->
+<!--                    </a><button class="product-item__whish btn-whish"><i class="far fa-heart"></i></button></div>-->
+<!--                  <div class="product-item__info">-->
+<!--                    <ul class="list-info">-->
+<!--                      <li class="list-info-item">-->
+<!--                        <div class="list-info-item__title">Год</div>-->
+<!--                        <div class="list-info-item__value">2021</div>-->
+<!--                      </li>-->
+<!--                      <li class="list-info-item">-->
+<!--                        <div class="list-info-item__title">Тип</div>-->
+<!--                        <div class="list-info-item__value">Sports</div>-->
+<!--                      </li>-->
+<!--                      <li class="list-info-item">-->
+<!--                        <div class="list-info-item__title">Производитель</div>-->
+<!--                        <div class="list-info-item__value">BMW</div>-->
+<!--                      </li>-->
+<!--                    </ul>-->
+<!--                  </div>-->
+<!--                  <div class="product-item__specifications">-->
+<!--                    <ul class="specifications-list">-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-1.png' %}" alt="Engine type" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Тип двигателя</div>-->
+<!--                          <div class="specifications-list-item__value">4-тактный цилиндр</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-2.png' %}" alt="Engine Power" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Мощность двигателя</div>-->
+<!--                          <div class="specifications-list-item__value">205hp (151 kW)</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-3.png' %}" alt="Displacement" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Смещение</div>-->
+<!--                          <div class="specifications-list-item__value">999 cc</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-4.png' %}" alt="Bore/Stroke" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Диаметр/ход поршня</div>-->
+<!--                          <div class="specifications-list-item__value">80mm / 49.7mm</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                    </ul>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div>-->
+<!--                <div class="product-item uk-transition-toggle">-->
+<!--                  <div class="product-item__head">-->
+<!--                    <div>-->
+<!--                      <div class="product-item__name"> <a href="page-shop-product-1.html">YAMAHA MT09</a></div>-->
+<!--                      <div class="product-item__manufacturer">Yamaha</div>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                      <div class="product-item__price">$4,500</div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="product-item__media uk-inline-clip uk-inline"><img src="{% static 'assets/img/product-2.jpg' %}" alt="YAMAHA MT09 BASE" /><a class="uk-transition-fade" href="page-shop-product-1.html">-->
+<!--                      <div class="uk-overlay-cover uk-overlay-primary"></div>-->
+<!--                      <div class="uk-position-center"><span class="icon-cross"></span></div>-->
+<!--                    </a><button class="product-item__whish btn-whish"><i class="far fa-heart"></i></button></div>-->
+<!--                  <div class="product-item__info">-->
+<!--                    <ul class="list-info">-->
+<!--                      <li class="list-info-item">-->
+<!--                        <div class="list-info-item__title">Год</div>-->
+<!--                        <div class="list-info-item__value">2021</div>-->
+<!--                      </li>-->
+<!--                      <li class="list-info-item">-->
+<!--                        <div class="list-info-item__title">Тип</div>-->
+<!--                        <div class="list-info-item__value">Спортивный</div>-->
+<!--                      </li>-->
+<!--                      <li class="list-info-item">-->
+<!--                        <div class="list-info-item__title">Производитель</div>-->
+<!--                        <div class="list-info-item__value">Yamaha</div>-->
+<!--                      </li>-->
+<!--                    </ul>-->
+<!--                  </div>-->
+<!--                  <div class="product-item__specifications">-->
+<!--                    <ul class="specifications-list">-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-1.png' %}" alt="Engine type" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Тип двигателя</div>-->
+<!--                          <div class="specifications-list-item__value">Десмоседичи 90 Вч</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-2.png' %}" alt="Engine Power" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Мощность двигателя</div>-->
+<!--                          <div class="specifications-list-item__value">208hp (153 kW)</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-3.png' %}" alt="Displacement" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Смещение</div>-->
+<!--                          <div class="specifications-list-item__value">1,103 cc</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-4.png' %}" alt="Bore/Stroke" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Диаметр/ход поршня</div>-->
+<!--                          <div class="specifications-list-item__value">80mm / 49.7mm</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                    </ul>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div>-->
+<!--                <div class="product-item uk-transition-toggle">-->
+<!--                  <div class="product-item__head">-->
+<!--                    <div>-->
+<!--                      <div class="product-item__name"> <a href="page-shop-product-1.html">KTM RC 390 BASE</a></div>-->
+<!--                      <div class="product-item__manufacturer">KTM</div>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                      <div class="product-item__price">$6,200</div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="product-item__media uk-inline-clip uk-inline"><img src="{% static 'assets/img/product-3.jpg' %}" alt="KTM RC 390 BASE" /><a class="uk-transition-fade" href="page-shop-product-1.html">-->
+<!--                      <div class="uk-overlay-cover uk-overlay-primary"></div>-->
+<!--                      <div class="uk-position-center"><span class="icon-cross"></span></div>-->
+<!--                    </a><button class="product-item__whish btn-whish"><i class="far fa-heart"></i></button></div>-->
+<!--                  <div class="product-item__info">-->
+<!--                    <ul class="list-info">-->
+<!--                      <li class="list-info-item">-->
+<!--                        <div class="list-info-item__title">Год</div>-->
+<!--                        <div class="list-info-item__value">2021</div>-->
+<!--                      </li>-->
+<!--                      <li class="list-info-item">-->
+<!--                        <div class="list-info-item__title">Тип</div>-->
+<!--                        <div class="list-info-item__value">Adventure</div>-->
+<!--                      </li>-->
+<!--                      <li class="list-info-item">-->
+<!--                        <div class="list-info-item__title">Производитель</div>-->
+<!--                        <div class="list-info-item__value">KTM</div>-->
+<!--                      </li>-->
+<!--                    </ul>-->
+<!--                  </div>-->
+<!--                  <div class="product-item__specifications">-->
+<!--                    <ul class="specifications-list">-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-1.png' %}" alt="Engine type" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Тип двигателя</div>-->
+<!--                          <div class="specifications-list-item__value">4-тактный цилиндр</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-2.png' %}" alt="Engine Power" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Мощность двигателя</div>-->
+<!--                          <div class="specifications-list-item__value">190hp (137 kW)</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-3.png' %}" alt="Displacement" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Смещение</div>-->
+<!--                          <div class="specifications-list-item__value">537 cc</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-4.png' %}" alt="Bore/Stroke" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Диаметр/ход поршня</div>-->
+<!--                          <div class="specifications-list-item__value">80mm / 49.7mm</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                    </ul>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div>-->
+<!--                <div class="product-item uk-transition-toggle">-->
+<!--                  <div class="product-item__head">-->
+<!--                    <div>-->
+<!--                      <div class="product-item__name"> <a href="page-shop-product-1.html">DUCATI HYPER 950</a></div>-->
+<!--                      <div class="product-item__manufacturer">Ducati</div>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                      <div class="product-item__price">$4,500</div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="product-item__media uk-inline-clip uk-inline"><img src="{% static 'assets/img/product-4.jpg' %}" alt="DUCATI HYPER 950" /><a class="uk-transition-fade" href="page-shop-product-1.html">-->
+<!--                      <div class="uk-overlay-cover uk-overlay-primary"></div>-->
+<!--                      <div class="uk-position-center"><span class="icon-cross"></span></div>-->
+<!--                    </a><button class="product-item__whish btn-whish"><i class="far fa-heart"></i></button></div>-->
+<!--                  <div class="product-item__info">-->
+<!--                    <ul class="list-info">-->
+<!--                      <li class="list-info-item">-->
+<!--                        <div class="list-info-item__title">Год</div>-->
+<!--                        <div class="list-info-item__value">2021</div>-->
+<!--                      </li>-->
+<!--                      <li class="list-info-item">-->
+<!--                        <div class="list-info-item__title">Тип</div>-->
+<!--                        <div class="list-info-item__value">Спортивный</div>-->
+<!--                      </li>-->
+<!--                      <li class="list-info-item">-->
+<!--                        <div class="list-info-item__title">Производитель</div>-->
+<!--                        <div class="list-info-item__value">Ducati</div>-->
+<!--                      </li>-->
+<!--                    </ul>-->
+<!--                  </div>-->
+<!--                  <div class="product-item__specifications">-->
+<!--                    <ul class="specifications-list">-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-1.png' %}" alt="Engine type" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Тип двигателя</div>-->
+<!--                          <div class="specifications-list-item__value">4-тактный цилиндр</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-2.png' %}" alt="Engine Power" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Мощность двигателя</div>-->
+<!--                          <div class="specifications-list-item__value">190hp (137 kW)</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-3.png' %}" alt="Displacement" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Смещение</div>-->
+<!--                          <div class="specifications-list-item__value">537 cc</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-4.png' %}" alt="Bore/Stroke" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Диаметр/ход поршня</div>-->
+<!--                          <div class="specifications-list-item__value">80mm / 49.7mm</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                    </ul>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div>-->
+<!--                <div class="product-item uk-transition-toggle">-->
+<!--                  <div class="product-item__head">-->
+<!--                    <div>-->
+<!--                      <div class="product-item__name"> <a href="page-shop-product-1.html">KAWASAKI VULCAN</a></div>-->
+<!--                      <div class="product-item__manufacturer">Kawasaki</div>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                      <div class="product-item__price">$6,200</div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="product-item__media uk-inline-clip uk-inline"><img src="{% static 'assets/img/product-5.jpg' %}" alt="KAWASAKI VULCAN" /><a class="uk-transition-fade" href="page-shop-product-1.html">-->
+<!--                      <div class="uk-overlay-cover uk-overlay-primary"></div>-->
+<!--                      <div class="uk-position-center"><span class="icon-cross"></span></div>-->
+<!--                    </a><button class="product-item__whish btn-whish"><i class="far fa-heart"></i></button></div>-->
+<!--                  <div class="product-item__info">-->
+<!--                    <ul class="list-info">-->
+<!--                      <li class="list-info-item">-->
+<!--                        <div class="list-info-item__title">Год</div>-->
+<!--                        <div class="list-info-item__value">2021</div>-->
+<!--                      </li>-->
+<!--                      <li class="list-info-item">-->
+<!--                        <div class="list-info-item__title">Тип</div>-->
+<!--                        <div class="list-info-item__value">Спортивный</div>-->
+<!--                      </li>-->
+<!--                      <li class="list-info-item">-->
+<!--                        <div class="list-info-item__title">Производитель</div>-->
+<!--                        <div class="list-info-item__value">Kawasaki</div>-->
+<!--                      </li>-->
+<!--                    </ul>-->
+<!--                  </div>-->
+<!--                  <div class="product-item__specifications">-->
+<!--                    <ul class="specifications-list">-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-1.png' %}" alt="Engine type" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Тип двигателя</div>-->
+<!--                          <div class="specifications-list-item__value">4-тактный цилиндр</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-2.png' %}" alt="Engine Power" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Мощность двигателя</div>-->
+<!--                          <div class="specifications-list-item__value">190hp (137 kW)</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-3.png' %}" alt="Displacement" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Смещение</div>-->
+<!--                          <div class="specifications-list-item__value">537 cc</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-4.png' %}" alt="Bore/Stroke" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Диаметр/ход поршня</div>-->
+<!--                          <div class="specifications-list-item__value">80mm / 49.7mm</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                    </ul>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div>-->
+<!--                <div class="product-item uk-transition-toggle">-->
+<!--                  <div class="product-item__head">-->
+<!--                    <div>-->
+<!--                      <div class="product-item__name"> <a href="page-shop-product-1.html">HONDA CB500X ABS</a></div>-->
+<!--                      <div class="product-item__manufacturer">Powered by Honda</div>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                      <div class="product-item__price">$4,500</div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="product-item__media uk-inline-clip uk-inline"><img src="{% static 'assets/img/product-6.jpg' %}" alt="HONDA CB500X ABS" /><a class="uk-transition-fade" href="page-shop-product-1.html">-->
+<!--                      <div class="uk-overlay-cover uk-overlay-primary"></div>-->
+<!--                      <div class="uk-position-center"><span class="icon-cross"></span></div>-->
+<!--                    </a><button class="product-item__whish btn-whish"><i class="far fa-heart"></i></button></div>-->
+<!--                  <div class="product-item__info">-->
+<!--                    <ul class="list-info">-->
+<!--                      <li class="list-info-item">-->
+<!--                        <div class="list-info-item__title">Год</div>-->
+<!--                        <div class="list-info-item__value">2021</div>-->
+<!--                      </li>-->
+<!--                      <li class="list-info-item">-->
+<!--                        <div class="list-info-item__title">Тип</div>-->
+<!--                        <div class="list-info-item__value">Adventure</div>-->
+<!--                      </li>-->
+<!--                      <li class="list-info-item">-->
+<!--                        <div class="list-info-item__title">Производитель</div>-->
+<!--                        <div class="list-info-item__value">Honda</div>-->
+<!--                      </li>-->
+<!--                    </ul>-->
+<!--                  </div>-->
+<!--                  <div class="product-item__specifications">-->
+<!--                    <ul class="specifications-list">-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-1.png' %}" alt="Engine type" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Тип двигателя</div>-->
+<!--                          <div class="specifications-list-item__value">4-тактный цилиндр</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-2.png' %}" alt="Engine Power" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Мощность двигателя</div>-->
+<!--                          <div class="specifications-list-item__value">190hp (137 kW)</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-3.png' %}" alt="Displacement" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Смещение</div>-->
+<!--                          <div class="specifications-list-item__value">537 cc</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="specifications-list-item">-->
+<!--                        <div class="specifications-list-item__icon"><img src="{% static 'assets/img/icons/specifications-4.png' %}" alt="Bore/Stroke" /></div>-->
+<!--                        <div class="specifications-list-item__desc">-->
+<!--                          <div class="specifications-list-item__title">Диаметр/ход поршня</div>-->
+<!--                          <div class="specifications-list-item__value">80mm / 49.7mm</div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                    </ul>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
             </div>
             <div class="uk-text-center uk-margin-medium-top"><a class="uk-button uk-button-danger" href="page-shop-grid.html">Смотреть все модели</a></div>
           </div>
@@ -1260,54 +1338,24 @@ MotoHub
                   <div data-uk-slider="autoplay:true">
                     <div class="uk-position-relative" tabindex="-1">
                       <ul class="uk-slider-items uk-grid uk-child-width-1-1">
+                        {% for i in testimonials %}
                         <li>
                           <div class="review-item">
                             <div class="review-item__desc">
-                              <p>Magna aliqua quis nostrud exercitation ullamco laboris nisut aliqua yxa consequat duis aute irure dolor iny reprehenderit voluptate velit esse cilum dols sed ipsum nulla pariatur nostrul doney quis nostrud saercitation ullamco laboris nisi ut aliquip reprehenderit.</p>
+                              <p>{{ i.description }}</p>
                             </div>
                             <div class="review-item__user">
                               <div>
-                                <div class="review-item__user-avatar"><img src="{% static 'assets/img/img-review-thumb.jpg' %}" alt="John Martin"></div>
+                                <div class="review-item__user-avatar"><img src="{{ i.photo.url }}" alt="John Martin"></div>
                               </div>
                               <div>
-                                <div class="review-item__user-name">John Martin</div>
-                                <div class="review-item__user-position">KTM Motorcycle Buyer</div>
+                                <div class="review-item__user-name">{{ i.name }}</div>
+                                <div class="review-item__user-position">{{ i.profession }}</div>
                               </div>
                             </div>
                           </div>
                         </li>
-                        <li>
-                          <div class="review-item">
-                            <div class="review-item__desc">
-                              <p>Magna aliqua quis nostrud exercitation ullamco laboris nisut aliqua yxa consequat duis aute irure dolor iny reprehenderit voluptate velit esse cilum dols sed ipsum nulla pariatur nostrul doney quis nostrud saercitation ullamco laboris nisi ut aliquip reprehenderit.</p>
-                            </div>
-                            <div class="review-item__user">
-                              <div>
-                                <div class="review-item__user-avatar"><img src="{% static 'assets/img/img-review-thumb.jpg' %}" alt="John Martin"></div>
-                              </div>
-                              <div>
-                                <div class="review-item__user-name">John Martin</div>
-                                <div class="review-item__user-position">KTM Motorcycle Buyer</div>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div class="review-item">
-                            <div class="review-item__desc">
-                              <p>Magna aliqua quis nostrud exercitation ullamco laboris nisut aliqua yxa consequat duis aute irure dolor iny reprehenderit voluptate velit esse cilum dols sed ipsum nulla pariatur nostrul doney quis nostrud saercitation ullamco laboris nisi ut aliquip reprehenderit.</p>
-                            </div>
-                            <div class="review-item__user">
-                              <div>
-                                <div class="review-item__user-avatar"><img src="{% static 'assets/img/img-review-thumb.jpg' %}" alt="John Martin"></div>
-                              </div>
-                              <div>
-                                <div class="review-item__user-name">John Martin</div>
-                                <div class="review-item__user-position">KTM Motorcycle Buyer</div>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
+                        {% endfor %}
                       </ul>
                     </div>
                     <ul class="uk-slider-nav uk-dotnav uk-dotnav-vertical"></ul>
@@ -1318,36 +1366,36 @@ MotoHub
           </div>
         </div>
       </div>
-      <div class="section-brands">
-        <div class="uk-section uk-container uk-container-large">
-          <div data-uk-slider="autoplay:true">
-            <div class="uk-position-relative" tabindex="-1">
-              <ul class="uk-slider-items uk-grid uk-flex-middle uk-text-center uk-child-width-1-1 uk-child-width-1-3@s uk-child-width-1-5@m">
-                <li><img src="{% static 'assets/img/brand-1.png' %}" alt="brand-logo"></li>
-                <li><img src="{% static 'assets/img/brand-2.png' %}" alt="brand-logo"></li>
-                <li><img src="{% static 'assets/img/brand-3.png' %}" alt="brand-logo"></li>
-                <li><img src="{% static 'assets/img/brand-4.png' %}" alt="brand-logo"></li>
-                <li><img src="{% static 'assets/img/brand-5.png' %}" alt="brand-logo"></li>
-              </ul>
-            </div>
-            <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
-          </div>
-        </div>
-      </div>
+<!--      <div class="section-brands">-->
+<!--        <div class="uk-section uk-container uk-container-large">-->
+<!--          <div data-uk-slider="autoplay:true">-->
+<!--            <div class="uk-position-relative" tabindex="-1">-->
+<!--              <ul class="uk-slider-items uk-grid uk-flex-middle uk-text-center uk-child-width-1-1 uk-child-width-1-3@s uk-child-width-1-5@m">-->
+<!--                <li><img src="{% static 'assets/img/brand-1.png' %}" alt="brand-logo"></li>-->
+<!--                <li><img src="{% static 'assets/img/brand-2.png' %}" alt="brand-logo"></li>-->
+<!--                <li><img src="{% static 'assets/img/brand-3.png' %}" alt="brand-logo"></li>-->
+<!--                <li><img src="{% static 'assets/img/brand-4.png' %}" alt="brand-logo"></li>-->
+<!--                <li><img src="{% static 'assets/img/brand-5.png' %}" alt="brand-logo"></li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--            <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
     </main>
     <div class="section-subscribe">
       <div class="uk-container">
         <div class="subscribe-box">
           <div class="uk-grid uk-flex-middle uk-child-width-1-2@m" data-uk-grid>
             <div>
-              <div class="section-title"><span>Latest news and deals directly to your inbox</span>
-                <div class="uk-h2">Subscribe for updated</div>
+              <div class="section-title"><span>ПОСЛЕДНИЕ НОВОСТИ И ПРЕДЛОЖЕНИЯ ПРЯМО НА ВАШ ПОЧТОВЫЙ ЭЛЕМЕНТ</span>
+                <div class="uk-h2">ПОДПИШИТЕСЬ НА ОБНОВЛЕНИЕ</div>
               </div>
             </div>
             <div>
               <div class="subscribe-box__form">
                 <form action="#!">
-                  <div class="uk-flex uk-flex-middle"><input class="uk-input" type="email" name="email" placeholder="Email Address ...."><button class="uk-button uk-button-danger" type="submit">Subscribe</button></div>
+                  <div class="uk-flex uk-flex-middle"><input class="uk-input" type="email" name="email" placeholder="Ваша почта ...."><button class="uk-button uk-button-danger" type="submit">Подписаться</button></div>
                 </form>
               </div>
             </div>

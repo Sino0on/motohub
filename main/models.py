@@ -13,8 +13,8 @@ class Service(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name = 'Сервис'
-        verbose_name_plural = 'Сервисы'
+        verbose_name = 'Услуга'
+        verbose_name_plural = 'Услуги'
 
     def __str__(self):
         return self.title
@@ -39,6 +39,7 @@ class Category(models.Model):
     title = models.CharField(max_length=255, verbose_name='Название')
     short_description = models.TextField(verbose_name='Мини описание')
     image = models.ImageField(upload_to='categories/', verbose_name='Изображение')
+    svg = models.FileField(verbose_name='SVG', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -69,8 +70,8 @@ class Project(models.Model):
     description = RichTextField(verbose_name='Описание')
     work_scope = models.CharField(max_length=255, verbose_name='Объем работ')
     secondary_description = RichTextField(verbose_name='Второе описание', blank=True, null=True)
-    client = models.CharField(max_length=255, verbose_name='Человек')
-    dimensions = models.CharField(max_length=255, verbose_name='Кровати', blank=True, null=True)
+    client = models.CharField(max_length=255, verbose_name='Клиент')
+    dimensions = models.CharField(max_length=255, verbose_name='Размеры', blank=True, null=True)
     location = models.CharField(max_length=255, verbose_name='Локация')
     type = models.CharField(max_length=255, verbose_name='Тип')
     image1 = models.ImageField(upload_to='projects/', verbose_name='Изображение 1')
@@ -80,8 +81,8 @@ class Project(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name = 'Номер'
-        verbose_name_plural = 'Номера'
+        verbose_name = 'Проект'
+        verbose_name_plural = 'Проекты'
 
     def __str__(self):
         return self.title
@@ -171,10 +172,52 @@ class SiteSetting(SingletonModel):
         verbose_name_plural = 'Настройки сайта'
 
 
+class Product(models.Model):
+    title = models.CharField(max_length=123, verbose_name='Название')
+    description = RichTextField(verbose_name='Описание')
+    mini_description = RichTextField(verbose_name='Мини Описание', blank=True, null=True)
+    price = models.CharField(max_length=123, verbose_name='Цена')
+    image1 = models.ImageField(upload_to='images/products/', verbose_name='Изображение')
+    image2 = models.ImageField(upload_to='images/products/', verbose_name='Изображение', blank=True, null=True)
+    image3 = models.ImageField(upload_to='images/products/', verbose_name='Изображение', blank=True, null=True)
+    image4 = models.ImageField(upload_to='images/products/', verbose_name='Изображение', blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='products', verbose_name='Категория')
+    year = models.CharField(max_length=123, blank=True, null=True, verbose_name='Год')
+    type = models.CharField(max_length=123, blank=True, null=True, verbose_name='Тип')
+    make = models.CharField(max_length=123, blank=True, null=True, verbose_name='Производитель')
+    engine_type = models.CharField(max_length=123, blank=True, null=True, verbose_name='Тип двигателя')
+    engine_power = models.CharField(max_length=123, blank=True, null=True, verbose_name='Мощность двигателя')
+    displacement = models.CharField(max_length=123, blank=True, null=True, verbose_name='Объем двигателя')
+    bore_stroke = models.CharField(max_length=123, blank=True, null=True, verbose_name='Диаметр и ход поршня')
+    size = models.CharField(max_length=123, blank=True, null=True, verbose_name='Размер')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукты'
+        ordering = ['-created_at']
+
+
+class Industry(models.Model):
+    title = models.CharField(max_length=123, verbose_name='Название')
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'Производство'
+        verbose_name_plural = 'Производства'
+
+
 class Application(models.Model):
     first_name = models.CharField(max_length=123, verbose_name='Имя')
     phone = models.CharField(max_length=123, verbose_name='Номер телефона')
     email = models.EmailField(max_length=123, verbose_name='Почта')
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, verbose_name='Товар', blank=True, null=True)
+    industry = models.ForeignKey(Industry, on_delete=models.SET_NULL, verbose_name='индустрия', blank=True, null=True)
     comment = models.TextField(verbose_name='Комментарий')
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -184,6 +227,35 @@ class Application(models.Model):
     class Meta:
         verbose_name = 'Заявка'
         verbose_name_plural = 'Заявки'
+        ordering = ['-created_at']
+
+
+class CategoryVacancy(models.Model):
+    title = models.CharField(max_length=123, verbose_name='Название')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'Категория для вакансий'
+        verbose_name_plural = 'Категории для вакансий'
+        ordering = ['-created_at']
+
+
+class Vacancy(models.Model):
+    title = models.CharField(max_length=123, verbose_name='Название')
+    mini_description = models.CharField(max_length=123, verbose_name='мини название')
+    description = RichTextField(verbose_name='Описание')
+    category = models.ForeignKey(CategoryVacancy, on_delete=models.PROTECT)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'Вакансия'
+        verbose_name_plural = 'Вакансии'
         ordering = ['-created_at']
 
 
@@ -201,3 +273,15 @@ class SiteContent(models.Model):
     class Meta:
         verbose_name = "Контент сайта"
         verbose_name_plural = "Контент сайта"
+
+
+class AboutImages(models.Model):
+    title = models.CharField(max_length=123)
+    image = models.ImageField(upload_to='images/')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'Изображение о нас'

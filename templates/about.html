@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+MotoHub
+{% endblock %}
+
+{% block content %}
+
+    <main class="page-main">
+      <div class="section-hero">
+        <div class="section-hero__bg" style="background-image: url({% static 'assets/img/bg/shop.jpg' %})">
+          <div class="uk-container">
+            <div class="section-hero__content">
+              <div class="section-hero__title"> <span>ВЫВОДИМ ПОЕЗДКИ НА НОВЫЙ УРОВЕНЬ</span>
+                <div class="uk-h1">О нас</div>
+              </div>
+              <div class="section-hero__breadcrumb">
+                <ul class="uk-breadcrumb">
+                  <li><a href="{% url 'home' %}">Главная</a></li>
+                  <li><span>О нас</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-content">
+        <div class="uk-section-large uk-container">
+          <div class="uk-grid" data-uk-grid>
+            <div class="uk-width-3-3@m">
+              
+
+
+
+
+ <article class="article-full">
+
+
+   {{ about.description|safe }}
+
+
+              </article>
+                
+            </div>
+         
+              
+          </div>
+        </div>
+      </div>
+    </main>
+        <div class="section-subscribe">
+      <div class="uk-container">
+        <div class="subscribe-box">
+          <div class="uk-grid uk-flex-middle uk-child-width-1-2@m" data-uk-grid>
+            <div>
+              <div class="section-title"><span>ПОСЛЕДНИЕ НОВОСТИ И ПРЕДЛОЖЕНИЯ ПРЯМО НА ВАШ ПОЧТОВЫЙ ЭЛЕМЕНТ</span>
+                <div class="uk-h2">ПОДПИШИТЕСЬ НА ОБНОВЛЕНИЕ</div>
+              </div>
+            </div>
+            <div>
+              <div class="subscribe-box__form">
+                <form action="#!">
+                  <div class="uk-flex uk-flex-middle"><input class="uk-input" type="email" name="email" placeholder="Ваша почта ...."><button class="uk-button uk-button-danger" type="submit">Подписаться</button></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 
-from .filters import NewsFilter
+from .filters import NewsFilter, ProductFilter
 from .forms import ApplicationForm
 from .models import *
 
@@ -49,12 +49,14 @@ class NewsDetailView(generic.DetailView):
     queryset = News.objects.all()
     model = News
     template_name = 'news_detail.html'
+    context_object_name = 'news_detail'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['banners'] = Banner.objects.all()
         context['services'] = Service.objects.all()
         context['site'] = SiteSetting.objects.all().first()
+        context['news'] = News.objects.all()[:3]
         context['new_news'] = News.objects.all()[:3]
         return context
 
@@ -69,6 +71,24 @@ class ServiceDetailView(generic.DetailView):
         context = super().get_context_data(**kwargs)
         context['banners'] = Banner.objects.all()
         context['services'] = Service.objects.all()
+        context['site'] = SiteSetting.objects.all().first()
+        context['new_news'] = News.objects.all()[:3]
+        return context
+
+
+class ProductDetailView(generic.DetailView):
+    template_name = 'product_detail.html'
+    queryset = Product.objects.all()
+    model = Product
+    context_object_name = 'product'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['banners'] = Banner.objects.all()
+        context['services'] = Service.objects.all()
+        context['imageShop'] = True
+        context['products_rec'] = Product.objects.all().order_by('?')[:10]
+        context['category_vac'] = CategoryVacancy.objects.all()
         context['site'] = SiteSetting.objects.all().first()
         context['new_news'] = News.objects.all()[:3]
         return context
@@ -137,6 +157,31 @@ class ProjectDetailView(generic.DetailView):
         context['about'] = SiteSetting.objects.all().first()
         context['services'] = Service.objects.all()
         context['site'] = SiteSetting.objects.all().first()
+        context['new_news'] = News.objects.all()[:3]
+        return context
+
+
+class ShopView(generic.ListView):
+    queryset = Product.objects.all()
+    model = Product
+    template_name = 'shop.html'
+    paginate_by = 10
+    context_object_name = 'products'
+    filter_class = ProductFilter
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        filter = self.filter_class(self.request.GET, queryset=queryset)
+        return filter.qs
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['banners'] = Banner.objects.all()
+        context['services'] = Service.objects.all()
+        context['categories'] = Category.objects.all()
+        context['category_vac'] = CategoryVacancy.objects.all()
+        context['site'] = SiteSetting.objects.all().first()
+        context['products_rec'] = Product.objects.all().order_by('?')[:3]
         context['new_news'] = News.objects.all()[:3]
         return context
 

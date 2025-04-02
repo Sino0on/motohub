@@ -62,6 +62,13 @@ class ProjectAdmin(admin.ModelAdmin):
     list_filter = ('client', 'location', 'type')
 
 
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title',)
+    search_fields = ('title',)
+    list_filter = ('title',)
+
+
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
     list_display = ('title', 'author')

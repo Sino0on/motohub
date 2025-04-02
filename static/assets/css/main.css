@@ -1417,7 +1417,7 @@ blockquote span::before {
 
 .page-footer__top {
   padding: 80px 0;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgb(0 0 0);
   font-size: 14px;
 }
 
@@ -1943,7 +1943,7 @@ blockquote span::before {
 }
 
 body.page-home .section-hero__bg {
-  padding: 335px 0 305px;
+  padding: 210px 0 153px;
 }
 
 body.page-home .section-hero__content {
